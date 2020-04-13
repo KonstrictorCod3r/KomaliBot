@@ -1,0 +1,24 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const auth = require('./auth.json');
+
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+
+
+client.on('message', msg => {
+  if (msg.content === '!yeet') {
+    msg.reply('yoot');
+  }
+client.on('message', (receivedMessage) => {
+    // Prevent bot from responding to its own messages
+    if (receivedMessage.author == client.user) {
+        return
+    }
+
+    receivedMessage.channel.send("Message received from " + receivedMessage.author.toString() + ": " + receivedMessage.content)
+})
+});
+});
+
+client.login(auth.token);
