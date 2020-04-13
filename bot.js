@@ -140,7 +140,21 @@ client.on('message', function(message) {
 
 
 
+client.on('message', msg => {
+  if (msg.content === '!help' || msg.content === '!commands') {
+var message = "```Komali Bot Commands: \n !help / !commands \n !slots (number, defaults to 3, maxes out at 30) \n !selfdestruct / !self destruct \n !hello / !hi \n !meow \n !hype / !yay \n !listemotes \n !goodbye / !good bye \n !color (color) / !removecolor  (only for racers)```";
+    msg.channel.send(message);
 
+
+
+  }
+client.on('message', (receivedMessage) => {
+    // Prevent bot from responding to its own messages
+    if (receivedMessage.author == client.user) {
+        return
+    }
+});
+});
 
 
 client.on('message', msg => {
@@ -261,5 +275,9 @@ message.channel.send("Please Play Again!");
 }
 });
 
-
+client.on('message', function(message){
+if (message.content.includes("\@Komali Bot\#6783")) {
+    message.channel.send("Pinged \:0");
+  }
+});
 client.login(auth.token);
