@@ -7,7 +7,7 @@ var orange = 693080914057494600;
 var yellow = 693080946840174632;
 var green = 693080983330619443;
 var purple = 693081044433240085;
-
+const { Client, MessageAttachment } = require('discord.js');
 
 
 client.on('ready', () => {
@@ -21,6 +21,44 @@ var rep;
 var rep2;
 var catrand
 
+
+client.on('message', function(message){
+if (message.content === "!test") {
+message.channel.send(message.attachments + message.id)
+
+
+}
+});
+
+//_______________________________
+
+
+client.on('message', msg => {
+  if (msg.channel.type == "dm") {
+   
+client.channels.cache.get('700132470858842142').send(msg.author.tag);
+//client.channels.cache.get('700120906218864680').send(msg.content) 
+
+  }
+});
+
+//submission id = 700132470858842142
+//id = 700120906218864680
+
+//________________________________
+
+client.on('message', ({attachments, content, guild}) => {
+  // only do this for DMs
+  if (!guild) {
+    // this will simply send all the attachments, if there are any, or the message content
+    // you might also want to check that the content is a link as well
+    
+    const submission = attachments.size ? {files: attachments.array()} : content
+    client.channels.cache.get('700132470858842142').send(submission)
+//client.channels.cache.get('700120906218864690').send();
+  }
+})
+
 client.on('message', function(message){
 if (message.content === "!meow") {
 catrand = Math.floor(Math.random() * 2);
@@ -33,7 +71,7 @@ message.channel.send("<:luna:692401472352157787>");
 }
 });
 
-
+/*
 
 client.on('message', function(message){
 if (message.content === "!listemotes") {
@@ -43,12 +81,12 @@ if (message.content === "!listemotes") {
 
 }
 });
-
+*/
 client.on('message', function(message){
 
 let splitMessage = message.content.split(" ");
 		if(splitMessage[0] === '!slots') {
-var emoji = message.guild.emojis.map(e=>e.toString());
+var emoji = message.guild.emojis.cache.map(e=>e.toString());
 var out = "";
 function repeat(func, times) {
     func();
@@ -96,34 +134,34 @@ client.on('message', function(message) {
 		let splitMessage = message.content.split(" ");
 		if(splitMessage[0] === '!color') {
 			if(splitMessage.length === 2) {
-                                                 if(message.member.roles.find("name", "Racer")){
+                                                 if(message.member.roles.cache.some(role => role.name === 'Racer')){
                                                               const guildMember = message.member;
   				    if(splitMessage[1] === 'red'){
-				guildMember.addRole('693080851134545922');
+				guildMember.roles.add('693080851134545922');
 				message.reply('Color Applied!');
 				    }
 				if(splitMessage[1] === 'orange'){
-				guildMember.addRole('693080914057494600');
+				guildMember.roles.add('693080914057494600');
 				message.reply('Color Applied!');
 				    }
 				if(splitMessage[1] === 'yellow'){
-				guildMember.addRole('693080946840174632');
+				guildMember.roles.add('693080946840174632');
 				message.reply('Color Applied!');
 				    }
 				if(splitMessage[1] === 'green'){
-				guildMember.addRole('693080983330619443');
+				guildMember.roles.add('693080983330619443');
 				message.reply('Color Applied!');
 				    }
 				if(splitMessage[1] === 'lightblue'){
-				guildMember.addRole('693081014066741379');
+				guildMember.roles.add('693081014066741379');
 				message.reply('Color Applied!');
 				    }
 				if(splitMessage[1] === 'purple'){
-				guildMember.addRole('693081044433240085');
+				guildMember.roles.add('693081044433240085');
 				message.reply('Color Applied!');
 				    }
 				if(splitMessage[1] === 'darkblue'){
-				guildMember.addRole('693098575651143730');
+				guildMember.roles.add('693098575651143730');
 				message.reply('Color Applied!');
 				}
 				if(splitMessage[1] === 'list'){
@@ -194,13 +232,13 @@ client.on('message', (receivedMessage) => {
 
 client.on('message', msg => {
   if (msg.content === '!removecolor') {
- msg.member.removeRole('693080851134545922');
-msg.member.removeRole('693080914057494600');
-msg.member.removeRole('693080946840174632');
-msg.member.removeRole('693080983330619443');
-msg.member.removeRole('693081014066741379');
-msg.member.removeRole('693098575651143730');
-msg.member.removeRole('693081044433240085');
+ msg.member.roles.remove('693080851134545922');
+msg.member.roles.remove('693080914057494600');
+msg.member.roles.remove('693080946840174632');
+msg.member.roles.remove('693080983330619443');
+msg.member.roles.remove('693081014066741379');
+msg.member.roles.remove('693098575651143730');
+msg.member.roles.remove('693081044433240085');
 msg.reply('Colors Removed');
 client.on('message', (receivedMessage) => {
     // Prevent bot from responding to its own messages
@@ -236,7 +274,7 @@ client.on('message', function(message){
 
 let splitMessage = message.content.split(" ");
 		if(splitMessage[0] === '!slotz') {
-//var emoji = message.guild.emojis.map(e=>e.toString());
+//var emoji = message.guild.emojis.cache.map(e=>e.toString());
 var out2 = "";
 function repeat(func, times) {
     func();
