@@ -136,38 +136,31 @@ client.on('message', function(message) {
 			if(splitMessage.length === 2) {
                                                  if(message.member.roles.cache.some(role => role.name === 'Racer')){
                                                               const guildMember = message.member;
-  				    if(splitMessage[1] === 'red'){
+				color_lower = splitMessage[1].toLowerCase()
+  				if(color_lower === 'red'){
 				guildMember.roles.add('693080851134545922');
 				message.reply('Color Applied!');
-				    }
-				if(splitMessage[1] === 'orange'){
+				} else if(color_lower === 'orange'){
 				guildMember.roles.add('693080914057494600');
 				message.reply('Color Applied!');
-				    }
-				if(splitMessage[1] === 'yellow'){
+				} else if(color_lower === 'yellow'){
 				guildMember.roles.add('693080946840174632');
 				message.reply('Color Applied!');
-				    }
-				if(splitMessage[1] === 'green'){
+				} else if(color_lower === 'green'){
 				guildMember.roles.add('693080983330619443');
 				message.reply('Color Applied!');
-				    }
-				if(splitMessage[1] === 'lightblue'){
+				} else if(color_lower === 'lightblue'){
 				guildMember.roles.add('693081014066741379');
 				message.reply('Color Applied!');
-				    }
-				if(splitMessage[1] === 'purple'){
+				} else if(color_lower === 'purple'){
 				guildMember.roles.add('693081044433240085');
 				message.reply('Color Applied!');
-				    }
-				if(splitMessage[1] === 'darkblue'){
+				} else if(color_lower === 'darkblue'){
 				guildMember.roles.add('693098575651143730');
 				message.reply('Color Applied!');
-				}
-				if(splitMessage[1] === 'list'){
+				} else if(color_lower === 'list'){
 				message.channel.send('Available Colors: (do !color ___ to get)  \n > red \n > orange \n > yellow \n > green \n > lightblue  \n > darkblue  \n > purple  \n Remember to do !removecolor before changing colors!');
-				}
-				if(splitMessage[1] !== 'list' && splitMessage[1] !== 'darkblue' && splitMessage[1] !== 'red' &&  splitMessage[1] !== 'orange' && splitMessage[1] !== 'yellow' && splitMessage[1] !== 'green' && splitMessage[1] !== 'lightblue' && splitMessage[1] !== 'purple'){
+				} else {
 				message.reply('not a valid color');
 				}
 }
